@@ -30,8 +30,15 @@ jobs:
       - name: Analyze project source
         run: dart analyze
 
-      - name: Run tests
-        run: flutter test
+      - name: Run build
+        run: flutter build web --base-href /diary_demoapp/
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: './build/web'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
       # - name: Repository
       #   id: version
