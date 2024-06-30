@@ -34,6 +34,7 @@ jobs:
       - name: Run build
         run: flutter build web --base-href /diary_demo_app/
   deploy:
+    needs: build
     permissions:
       pages: write      # to deploy to Pages
       id-token: write   # to verify the deployment originates from an appropriate source
