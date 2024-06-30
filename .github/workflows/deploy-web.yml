@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-  build:
+  build-and-upload:
     permissions:
       pages: write      # to deploy to Pages
       id-token: write   # to verify the deployment originates from an appropriate source
@@ -21,6 +21,8 @@ jobs:
         run: |
           # TODO: build時に流用する
           echo ${{github.repository}}
+          REPOSITORY=$(echo ${{ github.repository }} | sed 's|.*/||')
+          echo ${REPOSITORY}
       
       - name: Setup Flutter SDK
         uses: flutter-actions/setup-flutter@v3
@@ -36,14 +38,9 @@ jobs:
 
       - name: Run build
         run: flutter build web --base-href /diary_demo_app/
-  # deploy:
-  #   needs: build
 
-    # runs-on: ubuntu-latest
-    # timeout-minutes: 30
-    # steps:
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           path: './build/web'
 
