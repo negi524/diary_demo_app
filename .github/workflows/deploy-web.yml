@@ -16,6 +16,7 @@ jobs:
       
       - name: check repository variable
         run: |
+          # TODO: build時に流用する
           echo ${{github.repository}}
       
       - name: Setup Flutter SDK
@@ -31,32 +32,20 @@ jobs:
         run: dart analyze
 
       - name: Run build
-        run: flutter build web --base-href /diary_demoapp/
+        run: flutter build web --base-href /diary_demo_app/
+  deploy:
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           path: './build/web'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-      # - name: Repository
-      #   id: version
-      #   run: |
-      #     REPOSITORY=$(echo ${{ github.repository }} | sed -e "s#.*/##")
-      #     echo ::set-output name=repository::$REPOSITORY
-      # - name: Flutter
-      #   uses: subosito/flutter-action@v2
-      #   with:
-      #     flutter-version: '3.0.0'
-      #     channel: 'stable'
-      #     cache: true
-      # - run: flutter --version
-      # - run: flutter pub get
-      # - run: flutter build web --web-renderer html --base-href /${{ steps.version.outputs.repository }}/
-
-      # - name: Deploy
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./build/web
