@@ -17,6 +17,21 @@ jobs:
       - name: check repository variable
         run: |
           echo ${{github.repository}}
+      
+      - name: Setup Flutter SDK
+        uses: flutter-actions/setup-flutter@v3
+        with:
+          channel: stable
+          version: 3.22.2
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze project source
+        run: dart analyze
+
+      - name: Run tests
+        run: flutter test
 
       # - name: Repository
       #   id: version
