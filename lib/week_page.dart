@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-/// ホームページ
-class HomePage extends StatelessWidget {
+/// 週のページ
+class WeekPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Text('Home Page');
+    return Text('Week Page');
   }
 }
