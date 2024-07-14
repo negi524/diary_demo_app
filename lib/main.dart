@@ -1,5 +1,6 @@
-import 'package:diary_demo_app/home_page.dart';
-import 'package:diary_demo_app/profile_page.dart';
+import 'package:diary_demo_app/week_page.dart';
+import 'package:diary_demo_app/life_balance_wheel.dart';
+import 'package:diary_demo_app/setting_page.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -55,11 +56,13 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget page;
     switch (_selectedIndex) {
       case 0:
-        page = HomePage();
+        page = LifeBalanceWheel();
         break;
       case 1:
+        page = WeekPage();
+        break;
       case 2:
-        page = ProfilePage();
+        page = SettingPage();
         break;
       default:
         throw UnimplementedError('no widget for $_selectedIndex');
@@ -74,13 +77,18 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.pie_chart), label: 'Life Balance Wheel'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.view_week_outlined), label: 'Week'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings), label: 'Settings'),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
       ),
     );
   }
