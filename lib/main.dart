@@ -1,7 +1,7 @@
 import 'package:diary_demo_app/domain/week_review.dart';
-import 'package:diary_demo_app/week_page.dart';
-import 'package:diary_demo_app/life_balance_wheel.dart';
-import 'package:diary_demo_app/setting_page.dart';
+import 'package:diary_demo_app/week_widget.dart';
+import 'package:diary_demo_app/life_balance_wheel_widget.dart';
+import 'package:diary_demo_app/setting_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -66,13 +66,13 @@ class _HomePageState extends State<HomePage> {
     Widget page;
     switch (_selectedIndex) {
       case 0:
-        page = LifeBalanceWheel();
+        page = LifeBalanceWheelWidget();
         break;
       case 1:
-        page = WeekPage();
+        page = WeekWidget();
         break;
       case 2:
-        page = SettingPage();
+        page = SettingWidget();
         break;
       default:
         throw UnimplementedError('no widget for $_selectedIndex');

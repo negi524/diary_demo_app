@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 /// 週のページ
-class WeekPage extends StatefulWidget {
+class WeekWidget extends StatefulWidget {
   @override
-  State<WeekPage> createState() => _WeekPageState();
+  State<WeekWidget> createState() => _WeekWidgetState();
 }
 
-class _WeekPageState extends State<WeekPage> {
+class _WeekWidgetState extends State<WeekWidget> {
   late DateTime startDayOfWeek;
 
   // initStateを使って非同期初期化を行う
