@@ -9,8 +9,15 @@ class WeekPage extends StatefulWidget {
 }
 
 class _WeekPageState extends State<WeekPage> {
-  DateTime startDayOfWeek = DateTime.now()
-      .subtract(Duration(days: DateTime.now().weekday - DateTime.monday));
+  late DateTime startDayOfWeek;
+
+  // initStateを使って非同期初期化を行う
+  @override
+  void initState() {
+    super.initState();
+    startDayOfWeek = DateTime.now()
+        .subtract(Duration(days: DateTime.now().weekday - DateTime.monday));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +36,5 @@ class _WeekPageState extends State<WeekPage> {
       ),
       ...weekGoal.todoList.map((e) => Text(e)),
     ]);
-    // throw UnimplementedError();
   }
 }
