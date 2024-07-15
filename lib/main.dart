@@ -38,6 +38,10 @@ class MyAppState extends ChangeNotifier {
     weekReview.setReviewText(text);
     notifyListeners();
   }
+
+  String getWeekReviewText() {
+    return weekReview.reviewText ?? '';
+  }
 }
 
 class HomePage extends StatefulWidget {
