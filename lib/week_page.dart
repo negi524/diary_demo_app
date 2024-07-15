@@ -1,6 +1,8 @@
 import 'package:diary_demo_app/domain/week_goal.dart';
 import 'package:diary_demo_app/domain/week_review.dart';
+import 'package:diary_demo_app/main.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 /// 週のページ
 class WeekPage extends StatefulWidget {
@@ -21,20 +23,12 @@ class _WeekPageState extends State<WeekPage> {
 
   @override
   Widget build(BuildContext context) {
-    WeekGoal weekGoal = WeekGoal(
-        startDate: startDayOfWeek,
-        idealState: '理想の状態',
-        todoList: ['やること1', 'やること2']);
+    var appState = context.watch<MyAppState>();
+    // WeekGoal weekGoal = WeekGoal(
+    //     startDate: startDayOfWeek,
+    //     idealState: '理想の状態',
+    //     todoList: ['やること1', 'やること2']);
 
-    WeekReview weekReview =
-        WeekReview(startDate: startDayOfWeek, reviewText: 'レビュー内容');
-
-    return ListView(children: [
-      Padding(
-        padding: const EdgeInsets.all(20),
-        child: Text(weekGoal.get1WeekString()),
-      ),
-      ...weekGoal.todoList.map((e) => Text(e)),
-    ]);
+    return Center(child: Text(appState.weekReview.reviewText));
   }
 }

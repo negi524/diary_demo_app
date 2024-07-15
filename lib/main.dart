@@ -1,7 +1,7 @@
+import 'package:diary_demo_app/domain/week_review.dart';
 import 'package:diary_demo_app/week_page.dart';
 import 'package:diary_demo_app/life_balance_wheel.dart';
 import 'package:diary_demo_app/setting_page.dart';
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +30,8 @@ class MyApp extends StatelessWidget {
 
 // TODO: 削除
 class MyAppState extends ChangeNotifier {
-  var current = WordPair.random();
+  WeekReview weekReview =
+      WeekReview(startDate: DateTime.now(), reviewText: 'レビューテキスト');
 }
 
 class MyHomePage extends StatefulWidget {
@@ -72,9 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text('ButtonNavigationBar sample'),
       ),
-      body: Center(
-        child: page,
-      ),
+      body: page,
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
