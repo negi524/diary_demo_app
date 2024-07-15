@@ -80,7 +80,8 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('ButtonNavigationBar sample'),
+        title: Text('日記サンプルアプリ'),
+        backgroundColor: Colors.blue[200],
       ),
       body: page,
       bottomNavigationBar: BottomNavigationBar(

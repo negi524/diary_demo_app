@@ -13,6 +13,7 @@ class ReviewEditPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('振り返り編集ページ'),
+        backgroundColor: Colors.blue[200],
       ),
       body: Column(
         children: [
