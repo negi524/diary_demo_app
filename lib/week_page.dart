@@ -9,15 +9,19 @@ class WeekPage extends StatefulWidget {
 }
 
 class _WeekPageState extends State<WeekPage> {
-  WeekGoal weekGoal = WeekGoal(
-      startDate: DateTime.now(),
-      idealState: '理想の状態',
-      todoList: ['やること1', 'やること2']);
-
-  WeekReview weekReview = WeekReview(reviewText: 'レビュー内容');
+  DateTime startDayOfWeek = DateTime.now()
+      .subtract(Duration(days: DateTime.now().weekday - DateTime.monday));
 
   @override
   Widget build(BuildContext context) {
+    WeekGoal weekGoal = WeekGoal(
+        startDate: startDayOfWeek,
+        idealState: '理想の状態',
+        todoList: ['やること1', 'やること2']);
+
+    WeekReview weekReview =
+        WeekReview(startDate: startDayOfWeek, reviewText: 'レビュー内容');
+
     return ListView(children: [
       Padding(
         padding: const EdgeInsets.all(20),
