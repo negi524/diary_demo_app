@@ -1,7 +1,8 @@
-import 'package:diary_demo_app/week_page.dart';
-import 'package:diary_demo_app/life_balance_wheel.dart';
-import 'package:diary_demo_app/setting_page.dart';
-import 'package:english_words/english_words.dart';
+import 'package:diary_demo_app/domain/week_goal.dart';
+import 'package:diary_demo_app/domain/week_review.dart';
+import 'package:diary_demo_app/week_widget.dart';
+import 'package:diary_demo_app/life_balance_wheel_widget.dart';
+import 'package:diary_demo_app/setting_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,23 +23,59 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         ),
-        home: MyHomePage(),
+        home: HomePage(),
       ),
     );
   }
 }
 
-// TODO: 削除
 class MyAppState extends ChangeNotifier {
-  var current = WordPair.random();
+  WeekReview weekReview = WeekReview(startDate: DateTime.now());
+  WeekGoal weekGoal = WeekGoal(
+      startDate: DateTime.now(),
+      idealState: '理想の状態',
+      todoListText: 'todoListText');
+
+  /// 理想の状態を取得する
+  String getIdealState() {
+    return weekGoal.getIdealStateText();
+  }
+
+  /// 理想の状態を更新する
+  void setIdealState(String idealState) {
+    weekGoal.setIdealState(idealState);
+    notifyListeners();
+  }
+
+  /// やることリストを取得する
+  String getTodoListText() {
+    return weekGoal.getTodoListText();
+  }
+
+  /// やることリストを更新する
+  void setTodoListText(String thingsTodo) {
+    weekGoal.setTodoListText(thingsTodo);
+    notifyListeners();
+  }
+
+  /// 振り返りの内容を取得する
+  String getWeekReviewText() {
+    return weekReview.reviewText ?? '';
+  }
+
+  /// 振り返りの内容を更新する
+  void setReviewText(String text) {
+    weekReview.setReviewText(text);
+    notifyListeners();
+  }
 }
 
-class MyHomePage extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -49,20 +86,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: 削除
-    // var appState = context.watch<MyAppState>();
-
     // ページ遷移
     Widget page;
     switch (_selectedIndex) {
       case 0:
-        page = LifeBalanceWheel();
+        page = LifeBalanceWheelWidget();
         break;
       case 1:
-        page = WeekPage();
+        page = WeekWidget();
         break;
       case 2:
-        page = SettingPage();
+        page = SettingWidget();
         break;
       default:
         throw UnimplementedError('no widget for $_selectedIndex');
@@ -70,11 +104,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('ButtonNavigationBar sample'),
+        title: Text('日記サンプルアプリ'),
+        backgroundColor: Colors.blue[200],
       ),
-      body: Center(
-        child: page,
-      ),
+      body: page,
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

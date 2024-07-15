@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 /// ライフバランスホイールのページ
-class LifeBalanceWheel extends StatefulWidget {
+class LifeBalanceWheelWidget extends StatefulWidget {
   @override
-  State<LifeBalanceWheel> createState() => _LifeBalanceWheelState();
+  State<LifeBalanceWheelWidget> createState() => _LifeBalanceWheelWidgetState();
 }
 
-class _LifeBalanceWheelState extends State<LifeBalanceWheel> {
+class _LifeBalanceWheelWidgetState extends State<LifeBalanceWheelWidget> {
   List<ListTile> data = [
     ListTile(title: Text('仕事の充実度')),
     ListTile(title: Text('人間関係(仕事、友人)')),
