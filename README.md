@@ -14,3 +14,17 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## GitHub Pages公開
+
+### 1. ビルド
+
+```bash
+flutter build web --base-href "/diary_demo_app/"
+```
+
+### 2. 公開用ディレクトリに配置
+
+```bash
+mv build/web/ docs
+```
