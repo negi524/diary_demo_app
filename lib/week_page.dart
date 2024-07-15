@@ -9,8 +9,10 @@ class WeekPage extends StatefulWidget {
 }
 
 class _WeekPageState extends State<WeekPage> {
-  WeekGoal weekGoal =
-      WeekGoal(idealState: '理想の状態', todoList: ['やること1', 'やること2']);
+  WeekGoal weekGoal = WeekGoal(
+      startDate: DateTime.now(),
+      idealState: '理想の状態',
+      todoList: ['やること1', 'やること2']);
 
   WeekReview weekReview = WeekReview(reviewText: 'レビュー内容');
 
@@ -19,7 +21,7 @@ class _WeekPageState extends State<WeekPage> {
     return ListView(children: [
       Padding(
         padding: const EdgeInsets.all(20),
-        child: Text(weekGoal.idealState),
+        child: Text(weekGoal.get1WeekString()),
       ),
       ...weekGoal.todoList.map((e) => Text(e)),
     ]);
