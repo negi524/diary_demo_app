@@ -28,10 +28,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// TODO: 削除
 class MyAppState extends ChangeNotifier {
-  WeekReview weekReview =
-      WeekReview(startDate: DateTime.now(), reviewText: 'レビューテキスト');
+  WeekReview weekReview = WeekReview(startDate: DateTime.now());
 
   /// 振り返りの内容を更新する
   void setReviewText(String text) {
@@ -39,6 +37,7 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// 振り返りの内容を取得する
   String getWeekReviewText() {
     return weekReview.reviewText ?? '';
   }

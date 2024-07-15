@@ -5,8 +5,11 @@ import 'package:provider/provider.dart';
 class ReviewEditPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    String temp = '';
     var appState = context.watch<MyAppState>();
+
+    // 入力中のテキスト
+    String inputText = '';
+
     return Scaffold(
       appBar: AppBar(
         title: Text('振り返り編集ページ'),
@@ -19,12 +22,13 @@ class ReviewEditPage extends StatelessWidget {
             decoration: InputDecoration(
                 border: InputBorder.none, hintText: 'ここに振り返りを入力'),
             onChanged: (text) {
-              temp = text;
+              inputText = text;
             },
           ),
           ElevatedButton(
               onPressed: () {
-                appState.setReviewText(temp);
+                appState.setReviewText(inputText);
+                // 保存したことを通知
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text('保存しました'),
                   duration: Duration(seconds: 1),
