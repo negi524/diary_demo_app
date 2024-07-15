@@ -1,3 +1,4 @@
+import 'package:diary_demo_app/domain/week_goal.dart';
 import 'package:diary_demo_app/domain/week_review.dart';
 import 'package:diary_demo_app/week_widget.dart';
 import 'package:diary_demo_app/life_balance_wheel_widget.dart';
@@ -30,6 +31,25 @@ class MyApp extends StatelessWidget {
 
 class MyAppState extends ChangeNotifier {
   WeekReview weekReview = WeekReview(startDate: DateTime.now());
+  WeekGoal weekGoal = WeekGoal(
+      startDate: DateTime.now(),
+      idealState: '理想の状態',
+      todoList: ['やること1', 'やること2']);
+
+  /// 理想の状態を取得する
+  String getIdealState() {
+    return weekGoal.idealState;
+  }
+
+  /// やることリストを取得する
+  List<String> getTodoList() {
+    return weekGoal.todoList;
+  }
+
+  /// やることリストに追加する
+  void addTodoList(String thingsToDo) {
+    weekGoal.todoList.add(thingsToDo);
+  }
 
   /// 振り返りの内容を更新する
   void setReviewText(String text) {

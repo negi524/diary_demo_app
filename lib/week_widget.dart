@@ -1,5 +1,6 @@
 import 'package:diary_demo_app/main.dart';
 import 'package:diary_demo_app/review_edit_page.dart';
+import 'package:diary_demo_app/week_goal_edit_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,14 +24,23 @@ class _WeekWidgetState extends State<WeekWidget> {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
-    // WeekGoal weekGoal = WeekGoal(
-    //     startDate: startDayOfWeek,
-    //     idealState: '理想の状態',
-    //     todoList: ['やること1', 'やること2']);
+
+    List<Text> textList = appState.getTodoList().map((e) => Text(e)).toList();
 
     return Center(
         child: Column(
       children: [
+        Text('目標'),
+        Text(appState.getIdealState()),
+        ...textList,
+        ElevatedButton(
+            onPressed: () {
+              // ボタンが押されたときの処理
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => WeekGoalEditPage()));
+            },
+            child: Text('目標修正')),
+        Text('振り返り'),
         Text(appState.getWeekReviewText()),
         ElevatedButton(
             onPressed: () {
