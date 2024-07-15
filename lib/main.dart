@@ -32,6 +32,12 @@ class MyApp extends StatelessWidget {
 class MyAppState extends ChangeNotifier {
   WeekReview weekReview =
       WeekReview(startDate: DateTime.now(), reviewText: 'レビューテキスト');
+
+  /// 振り返りの内容を更新する
+  void setReviewText(String text) {
+    weekReview.setReviewText(text);
+    notifyListeners();
+  }
 }
 
 class HomePage extends StatefulWidget {

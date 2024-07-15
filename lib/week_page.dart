@@ -29,6 +29,6 @@ class _WeekPageState extends State<WeekPage> {
     //     idealState: '理想の状態',
     //     todoList: ['やること1', 'やること2']);
 
-    return Center(child: Text(appState.weekReview.reviewText));
+    return Center(child: Text(appState.weekReview.reviewText ?? ''));
   }
 }
