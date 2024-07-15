@@ -6,18 +6,19 @@ class WeekGoal {
   final DateTime startDate;
 
   /// 理想の状態
-  final String idealState;
+  String? idealState;
 
   /// 理想の状態になるためにやるべきこと
-  final List<String> todoList;
+  // final List<String> todoList;
+  String? todoListText;
 
   /// 備考
   final String? remarks;
 
   WeekGoal(
       {required this.startDate,
-      required this.idealState,
-      required this.todoList,
+      this.idealState,
+      this.todoListText,
       this.remarks});
 
   /// 1週間の日付を文字列で取得する
@@ -26,5 +27,25 @@ class WeekGoal {
     final end =
         DateFormat('yyyy/MM/dd').format(startDate.add(Duration(days: 7)));
     return '$start 〜 $end';
+  }
+
+  /// 理想の状態の文字列を取得する
+  String getIdealStateText() {
+    return idealState ?? '';
+  }
+
+  /// 理想の状態の文字列を更新する
+  void setIdealState(String text) {
+    idealState = text;
+  }
+
+  /// やることリストの文字列を取得する
+  String getTodoListText() {
+    return todoListText ?? '';
+  }
+
+  /// やることリストを更新する
+  void setTodoListText(String text) {
+    todoListText = text;
   }
 }

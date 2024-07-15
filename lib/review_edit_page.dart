@@ -20,7 +20,9 @@ class ReviewEditPage extends StatelessWidget {
           TextField(
             controller: TextEditingController(text: inputText),
             decoration: InputDecoration(
-                border: InputBorder.none, hintText: 'ここに振り返りを入力'),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(4.0))),
+                hintText: 'ここに振り返りを入力'),
             onChanged: (text) {
               inputText = text;
             },

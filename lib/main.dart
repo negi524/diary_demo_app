@@ -34,32 +34,39 @@ class MyAppState extends ChangeNotifier {
   WeekGoal weekGoal = WeekGoal(
       startDate: DateTime.now(),
       idealState: '理想の状態',
-      todoList: ['やること1', 'やること2']);
+      todoListText: 'todoListText');
 
   /// 理想の状態を取得する
   String getIdealState() {
-    return weekGoal.idealState;
+    return weekGoal.getIdealStateText();
+  }
+
+  /// 理想の状態を更新する
+  void setIdealState(String idealState) {
+    weekGoal.setIdealState(idealState);
+    notifyListeners();
   }
 
   /// やることリストを取得する
-  List<String> getTodoList() {
-    return weekGoal.todoList;
+  String getTodoListText() {
+    return weekGoal.getTodoListText();
   }
 
-  /// やることリストに追加する
-  void addTodoList(String thingsToDo) {
-    weekGoal.todoList.add(thingsToDo);
-  }
-
-  /// 振り返りの内容を更新する
-  void setReviewText(String text) {
-    weekReview.setReviewText(text);
+  /// やることリストを更新する
+  void setTodoListText(String thingsTodo) {
+    weekGoal.setTodoListText(thingsTodo);
     notifyListeners();
   }
 
   /// 振り返りの内容を取得する
   String getWeekReviewText() {
     return weekReview.reviewText ?? '';
+  }
+
+  /// 振り返りの内容を更新する
+  void setReviewText(String text) {
+    weekReview.setReviewText(text);
+    notifyListeners();
   }
 }
 
@@ -79,9 +86,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: 削除
-    // var appState = context.watch<MyAppState>();
-
     // ページ遷移
     Widget page;
     switch (_selectedIndex) {

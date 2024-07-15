@@ -8,7 +8,8 @@ class WeekGoalEditPage extends StatelessWidget {
     var appState = context.watch<MyAppState>();
 
     // 入力中のテキスト
-    String inputText = '';
+    String inputGoalText = appState.getIdealState();
+    String inputTodoListText = appState.getTodoListText();
 
     return Scaffold(
       appBar: AppBar(
@@ -17,24 +18,41 @@ class WeekGoalEditPage extends StatelessWidget {
       ),
       body: Column(
         children: [
+          Text('一週間が終わるときの理想の状態は？'),
           TextField(
-            controller: TextEditingController(text: appState.getIdealState()),
-            decoration:
-                InputDecoration(border: InputBorder.none, hintText: 'ここに目標を入力'),
+            controller: TextEditingController(text: inputGoalText),
+            decoration: InputDecoration(
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(4.0))),
+                hintText: 'ここに目標を入力'),
             onChanged: (text) {
-              inputText = text;
+              inputGoalText = text;
+            },
+          ),
+          SizedBox(height: 50),
+          Text('そのためにやることは？'),
+          TextField(
+            controller: TextEditingController(text: inputTodoListText),
+            decoration: InputDecoration(
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(4.0))),
+                hintText: 'やることを入力'),
+            maxLines: null,
+            onChanged: (text) {
+              inputTodoListText = text;
             },
           ),
           ElevatedButton(
               onPressed: () {
-                // TODO: データ保存
+                appState.setIdealState(inputGoalText);
+                appState.setTodoListText(inputTodoListText);
                 // 保存したことを通知
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text('保存しました'),
                   duration: Duration(seconds: 1),
                 ));
               },
-              child: Text('保存'))
+              child: Text('保存')),
         ],
       ),
     );

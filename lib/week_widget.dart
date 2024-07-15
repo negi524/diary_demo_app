@@ -25,14 +25,12 @@ class _WeekWidgetState extends State<WeekWidget> {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
 
-    List<Text> textList = appState.getTodoList().map((e) => Text(e)).toList();
-
     return Center(
         child: Column(
       children: [
         Text('目標'),
         Text(appState.getIdealState()),
-        ...textList,
+        Text(appState.getTodoListText()),
         ElevatedButton(
             onPressed: () {
               // ボタンが押されたときの処理
@@ -40,6 +38,7 @@ class _WeekWidgetState extends State<WeekWidget> {
                   MaterialPageRoute(builder: (context) => WeekGoalEditPage()));
             },
             child: Text('目標修正')),
+        SizedBox(height: 60),
         Text('振り返り'),
         Text(appState.getWeekReviewText()),
         ElevatedButton(
