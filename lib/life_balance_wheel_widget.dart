@@ -12,20 +12,14 @@ class _LifeBalanceWheelWidgetState extends State<LifeBalanceWheelWidget> {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
-
-    var lifeBalanceWheelList = appState
-        .getLifeBalanceWheel()
-        .getElementList()
-        .map((element) =>
-            ListTile(title: Text('${element.name}=${element.score}')))
-        .toList();
+    var lifeBalanceWheel = appState.getLifeBalanceWheel();
 
     return ListView(children: [
       Padding(
         padding: const EdgeInsets.all(20),
         child: Text('ライフバランスホイール'),
       ),
-      ...lifeBalanceWheelList,
+      Text('${lifeBalanceWheel.family.getName()}='),
     ]);
   }
 }
