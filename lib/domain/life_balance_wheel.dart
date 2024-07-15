@@ -15,6 +15,11 @@ class LifeBalanceWheel {
           LifeBalanceAsset(name: '住環境', score: 0),
         ];
 
+  /// 要素の一覧を返却する
+  List<LifeBalanceAsset> getElementList() {
+    return lifeBalanceList;
+  }
+
   /// スコアを一括で設定する
   void setScores(List<int> scores) {
     if (scores.length != lifeBalanceList.length) {

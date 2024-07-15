@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
 
 class MyAppState extends ChangeNotifier {
   /// ライフバランスホイール
-  LifeBalanceWheel lifeBalanceWheel = LifeBalanceWheel();
+  final LifeBalanceWheel _lifeBalanceWheel = LifeBalanceWheel();
 
   /// 週の目標
   WeekGoal weekGoal = WeekGoal(
@@ -43,9 +43,14 @@ class MyAppState extends ChangeNotifier {
   /// 週の振り返り
   WeekReview weekReview = WeekReview(startDate: DateTime.now());
 
+  /// ライフバランスホイールのデータを取得する
+  LifeBalanceWheel getLifeBalanceWheel() {
+    return _lifeBalanceWheel;
+  }
+
   /// ライフバランスホイールのスコアを更新する
   void setLifeBalanceWheel(List<int> scores) {
-    lifeBalanceWheel.setScores(scores);
+    _lifeBalanceWheel.setScores(scores);
     notifyListeners();
   }
 
