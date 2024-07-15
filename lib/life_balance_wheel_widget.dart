@@ -55,10 +55,10 @@ TableRow buildTableRow(LifeBalanceAsset asset) {
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: TextFormField(
-          initialValue: '0',
+          initialValue: asset.getScore().toString(),
           keyboardType: TextInputType.number,
           onChanged: (value) {
-            // TODO: 保存処理実装
+            asset.setScore(int.tryParse(value) ?? 0);
           },
           decoration: InputDecoration(
             border: OutlineInputBorder(),
