@@ -1,3 +1,4 @@
+import 'package:diary_demo_app/domain/life_balance_wheel.dart';
 import 'package:diary_demo_app/domain/week_goal.dart';
 import 'package:diary_demo_app/domain/week_review.dart';
 import 'package:diary_demo_app/week_widget.dart';
@@ -30,11 +31,23 @@ class MyApp extends StatelessWidget {
 }
 
 class MyAppState extends ChangeNotifier {
-  WeekReview weekReview = WeekReview(startDate: DateTime.now());
+  /// ライフバランスホイール
+  LifeBalanceWheel lifeBalanceWheel = LifeBalanceWheel();
+
+  /// 週の目標
   WeekGoal weekGoal = WeekGoal(
       startDate: DateTime.now(),
       idealState: '理想の状態',
       todoListText: 'todoListText');
+
+  /// 週の振り返り
+  WeekReview weekReview = WeekReview(startDate: DateTime.now());
+
+  /// ライフバランスホイールのスコアを更新する
+  void setLifeBalanceWheel(List<int> scores) {
+    lifeBalanceWheel.setScores(scores);
+    notifyListeners();
+  }
 
   /// 理想の状態を取得する
   String getIdealState() {
