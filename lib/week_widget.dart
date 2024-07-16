@@ -31,6 +31,7 @@ class _WeekWidgetState extends State<WeekWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('目標', style: Theme.of(context).textTheme.headlineLarge),
+          SizedBox(height: 30),
           Text(appState.getIdealState()),
           Text(appState.getTodoListText()),
           ElevatedButton(
@@ -44,6 +45,7 @@ class _WeekWidgetState extends State<WeekWidget> {
               child: Text('目標修正')),
           SizedBox(height: 60),
           Text('振り返り', style: Theme.of(context).textTheme.headlineLarge),
+          SizedBox(height: 30),
           Text(appState.getWeekReviewText()),
           ElevatedButton(
               onPressed: () {

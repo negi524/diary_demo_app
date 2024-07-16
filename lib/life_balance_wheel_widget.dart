@@ -65,7 +65,7 @@ Widget buildRadarChart(LifeBalanceWheel lifeBalanceWheel) {
       height: 300,
       width: 300,
       child: RadarChart(
-        ticks: [5, 10],
+        ticks: [2, 4, 6, 8, 10],
         features: [
           lifeBalanceWheel.workSatisfaction.getName(),
           lifeBalanceWheel.relationships.getName(),
