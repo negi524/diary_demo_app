@@ -1,3 +1,4 @@
+import 'package:diary_demo_app/domain/life_balance_wheel.dart';
 import 'package:diary_demo_app/domain/week_goal.dart';
 import 'package:diary_demo_app/domain/week_review.dart';
 import 'package:diary_demo_app/week_widget.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
-        title: 'Namer App',
+        title: 'Diary App',
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
@@ -30,11 +31,28 @@ class MyApp extends StatelessWidget {
 }
 
 class MyAppState extends ChangeNotifier {
-  WeekReview weekReview = WeekReview(startDate: DateTime.now());
+  /// ライフバランスホイール
+  LifeBalanceWheel _lifeBalanceWheel = LifeBalanceWheel();
+
+  /// 週の目標
   WeekGoal weekGoal = WeekGoal(
       startDate: DateTime.now(),
       idealState: '理想の状態',
       todoListText: 'todoListText');
+
+  /// 週の振り返り
+  WeekReview weekReview = WeekReview(startDate: DateTime.now());
+
+  /// ライフバランスホイールのデータを取得する
+  LifeBalanceWheel getLifeBalanceWheel() {
+    return _lifeBalanceWheel;
+  }
+
+  /// ライフバランスホイールのデータを更新する
+  void setLifeBalanceWheel(LifeBalanceWheel updateData) {
+    _lifeBalanceWheel = updateData.copy();
+    notifyListeners();
+  }
 
   /// 理想の状態を取得する
   String getIdealState() {
