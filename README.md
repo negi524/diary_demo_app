@@ -26,5 +26,5 @@ flutter build web --base-href "/diary_demo_app/"
 ### 2. 公開用ディレクトリに配置
 
 ```bash
-mv build/web/ docs
+rm -rf docs && mv build/web/ docs
 ```
