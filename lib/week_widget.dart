@@ -25,30 +25,47 @@ class _WeekWidgetState extends State<WeekWidget> {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
 
-    return Center(
-        child: Column(
-      children: [
-        Text('目標'),
-        Text(appState.getIdealState()),
-        Text(appState.getTodoListText()),
-        ElevatedButton(
-            onPressed: () {
-              // ボタンが押されたときの処理
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => WeekGoalEditPage()));
-            },
-            child: Text('目標修正')),
-        SizedBox(height: 60),
-        Text('振り返り'),
-        Text(appState.getWeekReviewText()),
-        ElevatedButton(
-            onPressed: () {
-              // ボタンが押されたときの処理
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ReviewEditPage()));
-            },
-            child: Text('振り返り編集')),
-      ],
-    ));
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text('目標', style: Theme.of(context).textTheme.headlineLarge),
+              SizedBox(width: 30),
+              ElevatedButton(
+                  onPressed: () {
+                    // ボタンが押されたときの処理
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => WeekGoalEditPage()));
+                  },
+                  child: Text('目標編集')),
+            ],
+          ),
+          SizedBox(height: 30),
+          Text(appState.getIdealState()),
+          Text(appState.getTodoListText()),
+          SizedBox(height: 60),
+          Row(children: [
+            Text('振り返り', style: Theme.of(context).textTheme.headlineLarge),
+            SizedBox(width: 30),
+            ElevatedButton(
+                onPressed: () {
+                  // ボタンが押されたときの処理
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ReviewEditPage()));
+                },
+                child: Text('振り返り編集')),
+          ]),
+          SizedBox(height: 30),
+          Text(appState.getWeekReviewText()),
+        ],
+      ),
+    );
   }
 }

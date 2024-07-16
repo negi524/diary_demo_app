@@ -20,27 +20,30 @@ class _LifeBalanceWheelWidgetState extends State<LifeBalanceWheelWidget> {
     inputLifeBalanceWheel = masterLifeBalanceWheel.copy();
 
     return Form(
-      child: ListView(children: [
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: Text('ライフバランスホイール',
-              style: Theme.of(context).textTheme.headlineLarge),
-        ),
-        SizedBox(height: 20),
-        buildRadarChart(inputLifeBalanceWheel),
-        SizedBox(height: 20),
-        buildTable(inputLifeBalanceWheel),
-        ElevatedButton(
-            onPressed: () {
-              appState.setLifeBalanceWheel(inputLifeBalanceWheel);
-              // 保存したことを通知
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text('保存しました'),
-                duration: Duration(seconds: 1),
-              ));
-            },
-            child: Text('保存'))
-      ]),
+      child: SingleChildScrollView(
+        child: Column(children: [
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Text('ライフバランスホイール',
+                style: Theme.of(context).textTheme.headlineLarge),
+          ),
+          SizedBox(height: 20),
+          buildRadarChart(inputLifeBalanceWheel),
+          SizedBox(height: 20),
+          buildTable(inputLifeBalanceWheel),
+          SizedBox(height: 20),
+          ElevatedButton(
+              onPressed: () {
+                appState.setLifeBalanceWheel(inputLifeBalanceWheel);
+                // 保存したことを通知
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('保存しました'),
+                  duration: Duration(seconds: 1),
+                ));
+              },
+              child: Text('保存'))
+        ]),
+      ),
     );
   }
 }
@@ -62,7 +65,7 @@ Widget buildRadarChart(LifeBalanceWheel lifeBalanceWheel) {
       height: 300,
       width: 300,
       child: RadarChart(
-        ticks: [5, 10],
+        ticks: [2, 4, 6, 8, 10],
         features: [
           lifeBalanceWheel.workSatisfaction.getName(),
           lifeBalanceWheel.relationships.getName(),
@@ -84,8 +87,8 @@ Widget buildTable(LifeBalanceWheel lifeBalanceWheel) {
   return Table(
     border: TableBorder.all(),
     columnWidths: {
-      0: FixedColumnWidth(3),
-      1: FixedColumnWidth(1),
+      0: FixedColumnWidth(300),
+      1: FixedColumnWidth(100),
     },
     children: [
       buildTableRow(lifeBalanceWheel.workSatisfaction),

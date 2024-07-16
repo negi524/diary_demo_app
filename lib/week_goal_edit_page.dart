@@ -18,7 +18,8 @@ class WeekGoalEditPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Text('一週間が終わるときの理想の状態は？'),
+          Text('一週間が終わるときの理想の状態は？',
+              style: Theme.of(context).textTheme.headlineLarge),
           TextField(
             controller: TextEditingController(text: inputGoalText),
             decoration: InputDecoration(
@@ -30,7 +31,7 @@ class WeekGoalEditPage extends StatelessWidget {
             },
           ),
           SizedBox(height: 50),
-          Text('そのためにやることは？'),
+          Text('そのためにやることは？', style: Theme.of(context).textTheme.headlineLarge),
           TextField(
             controller: TextEditingController(text: inputTodoListText),
             decoration: InputDecoration(
