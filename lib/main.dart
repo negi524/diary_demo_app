@@ -35,13 +35,13 @@ class MyAppState extends ChangeNotifier {
   LifeBalanceWheel _lifeBalanceWheel = LifeBalanceWheel();
 
   /// 週の目標
-  WeekGoal weekGoal = WeekGoal(
+  WeekGoal _weekGoal = WeekGoal(
       startDate: DateTime.now(),
       idealState: '理想の状態',
       todoListText: 'todoListText');
 
   /// 週の振り返り
-  WeekReview weekReview = WeekReview(startDate: DateTime.now());
+  WeekReview _weekReview = WeekReview(startDate: DateTime.now());
 
   /// ライフバランスホイールのデータを取得する
   LifeBalanceWheel getLifeBalanceWheel() {
@@ -56,34 +56,34 @@ class MyAppState extends ChangeNotifier {
 
   /// 理想の状態を取得する
   String getIdealState() {
-    return weekGoal.getIdealStateText();
+    return _weekGoal.getIdealStateText();
   }
 
   /// 理想の状態を更新する
   void setIdealState(String idealState) {
-    weekGoal.setIdealState(idealState);
+    _weekGoal.setIdealState(idealState);
     notifyListeners();
   }
 
   /// やることリストを取得する
   String getTodoListText() {
-    return weekGoal.getTodoListText();
+    return _weekGoal.getTodoListText();
   }
 
   /// やることリストを更新する
   void setTodoListText(String thingsTodo) {
-    weekGoal.setTodoListText(thingsTodo);
+    _weekGoal.setTodoListText(thingsTodo);
     notifyListeners();
   }
 
   /// 振り返りの内容を取得する
   String getWeekReviewText() {
-    return weekReview.reviewText ?? '';
+    return _weekReview.reviewText ?? '';
   }
 
   /// 振り返りの内容を更新する
   void setReviewText(String text) {
-    weekReview.setReviewText(text);
+    _weekReview.setReviewText(text);
     notifyListeners();
   }
 }
