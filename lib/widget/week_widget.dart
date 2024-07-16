@@ -1,6 +1,6 @@
 import 'package:diary_demo_app/main.dart';
-import 'package:diary_demo_app/review_edit_page.dart';
-import 'package:diary_demo_app/week_goal_edit_page.dart';
+import 'package:diary_demo_app/page/review_edit_page.dart';
+import 'package:diary_demo_app/page/week_goal_edit_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
