@@ -23,6 +23,7 @@ class ReviewEditPage extends StatelessWidget {
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(4.0))),
                 hintText: 'ここに振り返りを入力'),
+            maxLines: null,
             onChanged: (text) {
               inputText = text;
             },
