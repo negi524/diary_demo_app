@@ -1,6 +1,7 @@
 import 'package:diary_demo_app/domain/life_balance_wheel.dart';
 import 'package:diary_demo_app/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_radar_chart/flutter_radar_chart.dart';
 import 'package:provider/provider.dart';
 
 /// ライフバランスホイールのページ
@@ -22,8 +23,12 @@ class _LifeBalanceWheelWidgetState extends State<LifeBalanceWheelWidget> {
       child: ListView(children: [
         Padding(
           padding: const EdgeInsets.all(20),
-          child: Text('ライフバランスホイール'),
+          child: Text('ライフバランスホイール',
+              style: Theme.of(context).textTheme.headlineLarge),
         ),
+        SizedBox(height: 20),
+        buildRadarChart(inputLifeBalanceWheel),
+        SizedBox(height: 20),
         buildTable(inputLifeBalanceWheel),
         ElevatedButton(
             onPressed: () {
@@ -38,6 +43,41 @@ class _LifeBalanceWheelWidgetState extends State<LifeBalanceWheelWidget> {
       ]),
     );
   }
+}
+
+Widget buildRadarChart(LifeBalanceWheel lifeBalanceWheel) {
+  final scores = [
+    lifeBalanceWheel.workSatisfaction.getScore().toDouble(),
+    lifeBalanceWheel.relationships.getScore().toDouble(),
+    lifeBalanceWheel.family.getScore().toDouble(),
+    lifeBalanceWheel.lovePartnership.getScore().toDouble(),
+    lifeBalanceWheel.fitnessHealth.getScore().toDouble(),
+    lifeBalanceWheel.hobbiesEntertainment.getScore().toDouble(),
+    lifeBalanceWheel.money.getScore().toDouble(),
+    lifeBalanceWheel.livingEnvironment.getScore().toDouble(),
+  ];
+
+  return Center(
+    child: SizedBox(
+      height: 300,
+      width: 300,
+      child: RadarChart(
+        ticks: [5, 10],
+        features: [
+          lifeBalanceWheel.workSatisfaction.getName(),
+          lifeBalanceWheel.relationships.getName(),
+          lifeBalanceWheel.family.getName(),
+          lifeBalanceWheel.lovePartnership.getName(),
+          lifeBalanceWheel.fitnessHealth.getName(),
+          lifeBalanceWheel.hobbiesEntertainment.getName(),
+          lifeBalanceWheel.money.getName(),
+          lifeBalanceWheel.livingEnvironment.getName(),
+        ],
+        data: [scores],
+        reverseAxis: false,
+      ),
+    ),
+  );
 }
 
 Widget buildTable(LifeBalanceWheel lifeBalanceWheel) {

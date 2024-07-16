@@ -25,14 +25,14 @@ class LifeBalanceWheel {
   final LifeBalanceAsset livingEnvironment;
 
   LifeBalanceWheel()
-      : workSatisfaction = LifeBalanceAsset(name: '仕事の充実度', score: 0),
-        relationships = LifeBalanceAsset(name: '人間関係(仕事、友人)', score: 0),
-        family = LifeBalanceAsset(name: '家族', score: 0),
-        lovePartnership = LifeBalanceAsset(name: '恋愛・パートナーシップ', score: 0),
-        fitnessHealth = LifeBalanceAsset(name: '運動・フィットネス・健康', score: 0),
-        hobbiesEntertainment = LifeBalanceAsset(name: '趣味・娯楽', score: 0),
-        money = LifeBalanceAsset(name: 'お金・経済状況', score: 0),
-        livingEnvironment = LifeBalanceAsset(name: '住環境', score: 0);
+      : workSatisfaction = LifeBalanceAsset(name: '仕事の充実度', score: 5),
+        relationships = LifeBalanceAsset(name: '人間関係(仕事、友人)', score: 5),
+        family = LifeBalanceAsset(name: '家族', score: 5),
+        lovePartnership = LifeBalanceAsset(name: '恋愛・パートナーシップ', score: 5),
+        fitnessHealth = LifeBalanceAsset(name: '運動・フィットネス・健康', score: 5),
+        hobbiesEntertainment = LifeBalanceAsset(name: '趣味・娯楽', score: 5),
+        money = LifeBalanceAsset(name: 'お金・経済状況', score: 5),
+        livingEnvironment = LifeBalanceAsset(name: '住環境', score: 5);
 
   /// データをコピーして新しいオブジェクトを生成する
   LifeBalanceWheel copy() {
