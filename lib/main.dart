@@ -3,7 +3,7 @@ import 'package:diary_demo_app/domain/week_goal.dart';
 import 'package:diary_demo_app/domain/week_review.dart';
 import 'package:diary_demo_app/widget/week_widget.dart';
 import 'package:diary_demo_app/widget/life_balance_wheel_widget.dart';
-import 'package:diary_demo_app/widget/setting_widget.dart';
+import 'package:diary_demo_app/widget/profile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
         page = WeekWidget();
         break;
       case 2:
-        page = SettingWidget();
+        page = ProfileWidget();
         break;
       default:
         throw UnimplementedError('no widget for $_selectedIndex');
@@ -132,8 +132,7 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.pie_chart), label: 'Life Balance Wheel'),
           BottomNavigationBarItem(
               icon: Icon(Icons.view_week_outlined), label: 'Week'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), label: 'Settings'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
