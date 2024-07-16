@@ -34,19 +34,17 @@ class LifeBalanceWheel {
         money = LifeBalanceAsset(name: 'お金・経済状況', score: 0),
         livingEnvironment = LifeBalanceAsset(name: '住環境', score: 0);
 
-  /// 項目を設定する
-  void setScores(List<int> scores) {
-    if (scores.length != 8) {
-      throw ArgumentError('scores list must contain exactly 8 elements');
-    }
-    workSatisfaction.setScore(scores[0]);
-    relationships.setScore(scores[1]);
-    family.setScore(scores[2]);
-    lovePartnership.setScore(scores[3]);
-    fitnessHealth.setScore(scores[4]);
-    hobbiesEntertainment.setScore(scores[5]);
-    money.setScore(scores[6]);
-    livingEnvironment.setScore(scores[7]);
+  /// データをコピーして新しいオブジェクトを生成する
+  LifeBalanceWheel copy() {
+    return LifeBalanceWheel()
+      ..workSatisfaction.setScore(workSatisfaction.getScore())
+      ..relationships.setScore(relationships.getScore())
+      ..family.setScore(family.getScore())
+      ..lovePartnership.setScore(lovePartnership.getScore())
+      ..fitnessHealth.setScore(fitnessHealth.getScore())
+      ..hobbiesEntertainment.setScore(hobbiesEntertainment.getScore())
+      ..money.setScore(money.getScore())
+      ..livingEnvironment.setScore(livingEnvironment.getScore());
   }
 }
 
