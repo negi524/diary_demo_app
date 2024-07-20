@@ -4,6 +4,8 @@ import 'package:intl/intl.dart';
 class WeekTerm {
   /// 今日の日付
   final DateTime _today;
+
+  /// 日付のフォーマット
   final DateFormat _dateFormat = DateFormat('yyyy/MM/dd');
 
   WeekTerm() : _today = DateTime.now();

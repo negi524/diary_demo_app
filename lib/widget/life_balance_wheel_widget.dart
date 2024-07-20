@@ -11,13 +11,13 @@ class LifeBalanceWheelWidget extends StatefulWidget {
 }
 
 class _LifeBalanceWheelWidgetState extends State<LifeBalanceWheelWidget> {
-  var inputLifeBalanceWheel = LifeBalanceWheel();
+  var _inputLifeBalanceWheel = LifeBalanceWheel();
 
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
     var masterLifeBalanceWheel = appState.getLifeBalanceWheel();
-    inputLifeBalanceWheel = masterLifeBalanceWheel.copy();
+    _inputLifeBalanceWheel = masterLifeBalanceWheel.copy();
 
     return Form(
       child: SingleChildScrollView(
@@ -28,13 +28,13 @@ class _LifeBalanceWheelWidgetState extends State<LifeBalanceWheelWidget> {
                 style: Theme.of(context).textTheme.headlineLarge),
           ),
           SizedBox(height: 20),
-          buildRadarChart(inputLifeBalanceWheel),
+          buildRadarChart(_inputLifeBalanceWheel),
           SizedBox(height: 20),
-          buildTable(inputLifeBalanceWheel),
+          buildTable(_inputLifeBalanceWheel),
           SizedBox(height: 20),
           ElevatedButton(
               onPressed: () {
-                appState.setLifeBalanceWheel(inputLifeBalanceWheel);
+                appState.setLifeBalanceWheel(_inputLifeBalanceWheel);
                 // 保存したことを通知
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text('保存しました'),
