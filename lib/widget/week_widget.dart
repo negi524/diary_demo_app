@@ -1,3 +1,4 @@
+import 'package:diary_demo_app/domain/week_term.dart';
 import 'package:diary_demo_app/main.dart';
 import 'package:diary_demo_app/page/review_edit_page.dart';
 import 'package:diary_demo_app/page/week_goal_edit_page.dart';
@@ -12,6 +13,7 @@ class WeekWidget extends StatefulWidget {
 
 class _WeekWidgetState extends State<WeekWidget> {
   late DateTime startDayOfWeek;
+  final WeekTerm _weekTerm = WeekTerm();
 
   // initStateを使って非同期初期化を行う
   @override
@@ -30,6 +32,11 @@ class _WeekWidgetState extends State<WeekWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Center(
+            child: Text(_weekTerm.getWeekString(),
+                style: Theme.of(context).textTheme.headlineLarge),
+          ),
+          SizedBox(height: 30),
           Row(
             children: [
               Text('目標', style: Theme.of(context).textTheme.headlineLarge),
