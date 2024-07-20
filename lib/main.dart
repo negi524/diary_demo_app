@@ -1,6 +1,8 @@
 import 'package:diary_demo_app/domain/life_balance_wheel.dart';
 import 'package:diary_demo_app/domain/week_goal.dart';
 import 'package:diary_demo_app/domain/week_review.dart';
+import 'package:diary_demo_app/domain/weekly_goal_review.dart';
+import 'package:diary_demo_app/service/weekly_goal_review_factory.dart';
 import 'package:diary_demo_app/widget/week_widget.dart';
 import 'package:diary_demo_app/widget/life_balance_wheel_widget.dart';
 import 'package:diary_demo_app/widget/profile_widget.dart';
@@ -33,6 +35,10 @@ class MyApp extends StatelessWidget {
 class MyAppState extends ChangeNotifier {
   /// ライフバランスホイール
   LifeBalanceWheel _lifeBalanceWheel = LifeBalanceWheel();
+
+  /// 週の目標と振り返り
+  List<WeeklyGoalReview> _weeklyGoalReviewList =
+      WeeklyGoalReviewFactory.createMock();
 
   /// 週の目標
   WeekGoal _weekGoal =
