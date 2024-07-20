@@ -12,15 +12,13 @@ class WeekWidget extends StatefulWidget {
 }
 
 class _WeekWidgetState extends State<WeekWidget> {
-  late DateTime startDayOfWeek;
-  final WeekTerm _weekTerm = WeekTerm();
+  late WeekTerm _weekTerm;
 
   // initStateを使って非同期初期化を行う
   @override
   void initState() {
     super.initState();
-    startDayOfWeek = DateTime.now()
-        .subtract(Duration(days: DateTime.now().weekday - DateTime.monday));
+    _weekTerm = WeekTerm.create(DateTime.now());
   }
 
   @override
