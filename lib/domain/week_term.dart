@@ -12,7 +12,7 @@ class WeekTerm {
   final DateFormat _dateFormat = DateFormat('yyyy/MM/dd');
 
   /// プライベートコンストラクタ
-  WeekTerm._(DateTime startDate, DateTime endDate)
+  WeekTerm._({required DateTime startDate, required DateTime endDate})
       : _startDate = startDate,
         _endDate = endDate;
 
@@ -24,7 +24,7 @@ class WeekTerm {
 
     int endDateDifference = DateTime.sunday - baseDate.weekday;
     final endDate = baseDate.add(Duration(days: endDateDifference));
-    return WeekTerm._(startDate, endDate);
+    return WeekTerm._(startDate: startDate, endDate: endDate);
   }
 
   /// 今週の開始日を文字列で取得する

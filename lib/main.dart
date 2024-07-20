@@ -35,13 +35,11 @@ class MyAppState extends ChangeNotifier {
   LifeBalanceWheel _lifeBalanceWheel = LifeBalanceWheel();
 
   /// 週の目標
-  WeekGoal _weekGoal = WeekGoal(
-      startDate: DateTime.now(),
-      idealState: '理想の状態',
-      todoListText: 'todoListText');
+  WeekGoal _weekGoal =
+      WeekGoal.create(idealState: '理想の状態', todoListText: 'todoListText');
 
   /// 週の振り返り
-  WeekReview _weekReview = WeekReview(startDate: DateTime.now());
+  WeekReview _weekReview = WeekReview.create();
 
   /// ライフバランスホイールのデータを取得する
   LifeBalanceWheel getLifeBalanceWheel() {
