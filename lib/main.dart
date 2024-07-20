@@ -36,6 +36,9 @@ class MyAppState extends ChangeNotifier {
   /// ライフバランスホイール
   LifeBalanceWheel _lifeBalanceWheel = LifeBalanceWheel();
 
+  /// TODO: 現在位置を保持する
+  int currentIndex = 0;
+
   /// 週の目標と振り返り
   List<WeeklyGoalReview> _weeklyGoalReviewList =
       WeeklyGoalReviewFactory.createMock();
@@ -45,6 +48,7 @@ class MyAppState extends ChangeNotifier {
       WeekGoal.create(idealState: '理想の状態', todoListText: 'todoListText');
 
   /// 週の振り返り
+  // WeekReview _weekReview = WeekReview.create();
   WeekReview _weekReview = WeekReview.create();
 
   /// ライフバランスホイールのデータを取得する
