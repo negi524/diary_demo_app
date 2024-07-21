@@ -6,7 +6,7 @@ import 'package:diary_demo_app/domain/weekly_goal_review.dart';
 /// モックデータの生成クラス
 class WeeklyGoalReviewFactory {
   /// モックデータを生成する
-  static List<WeeklyGoalReview> createMock() {
+  List<WeeklyGoalReview> createMock() {
     var today = DateTime.now();
 
     final weekTerm1 = WeekTerm.create(today);

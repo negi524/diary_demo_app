@@ -1,7 +1,9 @@
-import 'package:diary_demo_app/domain/week_term.dart';
+import 'package:diary_demo_app/domain/weekly_goal_review.dart';
+import 'package:diary_demo_app/locator.dart';
 import 'package:diary_demo_app/main.dart';
 import 'package:diary_demo_app/page/review_edit_page.dart';
 import 'package:diary_demo_app/page/week_goal_edit_page.dart';
+import 'package:diary_demo_app/service/weekly_goal_review_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,13 +14,16 @@ class WeekWidget extends StatefulWidget {
 }
 
 class _WeekWidgetState extends State<WeekWidget> {
-  late WeekTerm _weekTerm;
+  final WeeklyGoalReviewFactory _weeklyGoalReviewFactory =
+      locator<WeeklyGoalReviewFactory>();
+  late WeeklyGoalReview _weeklyGoalReview;
 
-  // initStateを使って非同期初期化を行う
+  // 初期化時に目標と振り返り情報を取得する
   @override
   void initState() {
     super.initState();
-    _weekTerm = WeekTerm.create(DateTime.now());
+    // TODO: 例外処理
+    _weeklyGoalReview = _weeklyGoalReviewFactory.createMock()[0];
   }
 
   @override
@@ -31,7 +36,7 @@ class _WeekWidgetState extends State<WeekWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Center(
-            child: Text(_weekTerm.getWeekString(),
+            child: Text(_weeklyGoalReview.getWeekTermString(),
                 style: Theme.of(context).textTheme.headlineLarge),
           ),
           SizedBox(height: 30),
