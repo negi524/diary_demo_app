@@ -29,6 +29,18 @@ class WeeklyGoalReview {
         weekTerm: weekTerm, weekGoal: weekGoal, weekReview: weekReview);
   }
 
+  WeekTerm getWeekTerm() {
+    return _weekTerm;
+  }
+
+  WeekGoal getWeekGoal() {
+    return _weekGoal;
+  }
+
+  WeekReview getWeekReview() {
+    return _weekReview;
+  }
+
   /// 週の開始と終了を文字列で取得する
   String getWeekTermString() {
     return _weekTerm.getWeekString();
