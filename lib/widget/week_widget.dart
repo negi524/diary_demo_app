@@ -28,6 +28,8 @@ class WeekWidget extends StatelessWidget {
               Text(weekState.getWeekTermText(),
                   style: Theme.of(context).textTheme.headlineLarge),
               IconButton(
+                  color: Colors.blue,
+                  disabledColor: Colors.grey,
                   onPressed: !weekState.hasNextWeek()
                       ? null
                       : () => weekState.updateNextWeek(),
