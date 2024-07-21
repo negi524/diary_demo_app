@@ -1,15 +1,15 @@
-import 'package:diary_demo_app/main.dart';
+import 'package:diary_demo_app/state/week_goal_review_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class WeekGoalEditPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
+    var weekState = context.watch<WeekGoalReviewState>();
 
     // 入力中のテキスト
-    String inputGoalText = appState.getIdealState();
-    String inputTodoListText = appState.getTodoListText();
+    String inputGoalText = weekState.getWeekGoal().getIdealStateText();
+    String inputTodoListText = weekState.getWeekGoal().getTodoListText();
 
     return Scaffold(
       appBar: AppBar(
@@ -45,8 +45,8 @@ class WeekGoalEditPage extends StatelessWidget {
           ),
           ElevatedButton(
               onPressed: () {
-                appState.setIdealState(inputGoalText);
-                appState.setTodoListText(inputTodoListText);
+                weekState.setIdealState(inputGoalText);
+                weekState.setTodoListText(inputTodoListText);
                 // 保存したことを通知
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text('保存しました'),
