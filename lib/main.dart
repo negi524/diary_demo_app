@@ -40,16 +40,13 @@ class MyAppState extends ChangeNotifier {
   /// ライフバランスホイール
   LifeBalanceWheel _lifeBalanceWheel = LifeBalanceWheel();
 
-  /// TODO: 週の目標と振り返り
-  // List<WeeklyGoalReview> _weeklyGoalReviewList =
-  //     WeeklyGoalReviewFactory.createMock();
-
   /// 週の目標
+  @deprecated
   WeekGoal _weekGoal =
       WeekGoal.create(idealState: '理想の状態', todoListText: 'todoListText');
 
   /// 週の振り返り
-  // WeekReview _weekReview = WeekReview.create();
+  @deprecated
   WeekReview _weekReview = WeekReview.create();
 
   /// ライフバランスホイールのデータを取得する
@@ -64,33 +61,39 @@ class MyAppState extends ChangeNotifier {
   }
 
   /// 理想の状態を取得する
+  @deprecated
   String getIdealState() {
     return _weekGoal.getIdealStateText();
   }
 
   /// 理想の状態を更新する
+  @deprecated
   void setIdealState(String idealState) {
     _weekGoal.setIdealState(idealState);
     notifyListeners();
   }
 
   /// やることリストを取得する
+  @deprecated
   String getTodoListText() {
     return _weekGoal.getTodoListText();
   }
 
   /// やることリストを更新する
+  @deprecated
   void setTodoListText(String thingsTodo) {
     _weekGoal.setTodoListText(thingsTodo);
     notifyListeners();
   }
 
   /// 振り返りの内容を取得する
+  @deprecated
   String getWeekReviewText() {
     return _weekReview.reviewText ?? '';
   }
 
   /// 振り返りの内容を更新する
+  @deprecated
   void setReviewText(String text) {
     _weekReview.setReviewText(text);
     notifyListeners();

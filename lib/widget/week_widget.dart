@@ -15,9 +15,22 @@ class WeekWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(
-            child: Text(weekState.getWeekTermText(),
-                style: Theme.of(context).textTheme.headlineLarge),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              IconButton(
+                  onPressed: () {
+                    // TODO: 実装
+                  },
+                  icon: Icon(Icons.navigate_before)),
+              Text(weekState.getWeekTermText(),
+                  style: Theme.of(context).textTheme.headlineLarge),
+              IconButton(
+                  onPressed: () {
+                    // TODO: 実装
+                  },
+                  icon: Icon(Icons.navigate_next)),
+            ],
           ),
           SizedBox(height: 30),
           WeekGoalWidget(weekGoal: weekState.getWeekGoal()),

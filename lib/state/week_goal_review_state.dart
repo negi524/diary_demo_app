@@ -76,11 +76,23 @@ class WeekGoalReviewState extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool hasNextWeek() {
+    return true;
+  }
+
   void setNextWeek() {
     // TODO: データフェッチを行い、次週のデータで更新する
+    _weeklyGoalReview = _weeklyGoalReviewFactory.createMock()[2];
+    notifyListeners();
+  }
+
+  bool hasPreviousWeek() {
+    return true;
   }
 
   void setPreviousWeek() {
     // TODO: データフェッチを行い、先週のデータで更新する
+    _weeklyGoalReview = _weeklyGoalReviewFactory.createMock()[0];
+    notifyListeners();
   }
 }
