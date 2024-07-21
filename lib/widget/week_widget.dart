@@ -5,12 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 /// 週のウィジェット
-class WeekWidget extends StatefulWidget {
-  @override
-  State<WeekWidget> createState() => _WeekWidgetState();
-}
-
-class _WeekWidgetState extends State<WeekWidget> {
+class WeekWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var weekState = context.watch<WeekGoalReviewState>();
