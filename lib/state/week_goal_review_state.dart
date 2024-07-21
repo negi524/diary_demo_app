@@ -9,7 +9,12 @@ import 'package:flutter/material.dart';
 class WeekGoalReviewState extends ChangeNotifier {
   final WeeklyGoalReviewFactory _weeklyGoalReviewFactory =
       locator<WeeklyGoalReviewFactory>();
+
+  /// 今見てる週のデータ
   late WeeklyGoalReview _weeklyGoalReview;
+
+  /// ページング
+  late int _currentIndex;
 
   /// コンストラクタ
   WeekGoalReviewState() {
@@ -20,7 +25,8 @@ class WeekGoalReviewState extends ChangeNotifier {
   void _init() {
     // 初期データ取得
     // TODO: データフェッチを行う
-    _weeklyGoalReview = _weeklyGoalReviewFactory.createMock()[1];
+    _currentIndex = 1;
+    _weeklyGoalReview = _weeklyGoalReviewFactory.createMock()[_currentIndex];
   }
 
   /// 週の目標データを取得する
@@ -78,25 +84,27 @@ class WeekGoalReviewState extends ChangeNotifier {
 
   /// 前の週がある場合はtrueを返す
   bool hasPreviousWeek() {
-    return true;
+    return _currentIndex > 0;
+  }
+
+  /// 次の週がある場合はtrueを返す
+  bool hasNextWeek() {
+    return _currentIndex <= 2;
   }
 
   /// 先週のデータで更新する
   void updatePreviousWeek() {
     // TODO: データフェッチを行い、先週のデータで更新する
-    _weeklyGoalReview = _weeklyGoalReviewFactory.createMock()[0];
+    _currentIndex--;
+    _weeklyGoalReview = _weeklyGoalReviewFactory.createMock()[_currentIndex];
     notifyListeners();
-  }
-
-  /// 次の週がある場合はtrueを返す
-  bool hasNextWeek() {
-    return true;
   }
 
   /// 次週のデータで更新する
   void updateNextWeek() {
     // TODO: データフェッチを行い、次週のデータで更新する
-    _weeklyGoalReview = _weeklyGoalReviewFactory.createMock()[2];
+    _currentIndex++;
+    _weeklyGoalReview = _weeklyGoalReviewFactory.createMock()[_currentIndex];
     notifyListeners();
   }
 }

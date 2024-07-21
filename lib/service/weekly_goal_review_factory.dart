@@ -38,6 +38,21 @@ class WeeklyGoalReviewFactory {
     final WeeklyGoalReview weeklyGoalReview3 = WeeklyGoalReview.create(
         weekTerm: weekTerm3, weekGoal: weekGoal3, weekReview: weekReview3);
 
-    return [weeklyGoalReview1, weeklyGoalReview2, weeklyGoalReview3];
+    /// 21日後
+    final weekTerm4 = WeekTerm.create(today.add(Duration(days: 21)));
+
+    final weekGoal4 =
+        WeekGoal.create(idealState: '理想の状態4', todoListText: 'やることリスト4');
+    final weekReview4 = WeekReview.create();
+
+    final WeeklyGoalReview weeklyGoalReview4 = WeeklyGoalReview.create(
+        weekTerm: weekTerm4, weekGoal: weekGoal4, weekReview: weekReview4);
+
+    return [
+      weeklyGoalReview1,
+      weeklyGoalReview2,
+      weeklyGoalReview3,
+      weeklyGoalReview4
+    ];
   }
 }

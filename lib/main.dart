@@ -1,6 +1,4 @@
 import 'package:diary_demo_app/domain/life_balance_wheel.dart';
-import 'package:diary_demo_app/domain/week_goal.dart';
-import 'package:diary_demo_app/domain/week_review.dart';
 import 'package:diary_demo_app/locator.dart';
 import 'package:diary_demo_app/state/week_goal_review_state.dart';
 import 'package:diary_demo_app/widget/week_widget.dart';
@@ -40,15 +38,6 @@ class MyAppState extends ChangeNotifier {
   /// ライフバランスホイール
   LifeBalanceWheel _lifeBalanceWheel = LifeBalanceWheel();
 
-  /// 週の目標
-  @deprecated
-  WeekGoal _weekGoal =
-      WeekGoal.create(idealState: '理想の状態', todoListText: 'todoListText');
-
-  /// 週の振り返り
-  @deprecated
-  WeekReview _weekReview = WeekReview.create();
-
   /// ライフバランスホイールのデータを取得する
   LifeBalanceWheel getLifeBalanceWheel() {
     return _lifeBalanceWheel;
@@ -57,45 +46,6 @@ class MyAppState extends ChangeNotifier {
   /// ライフバランスホイールのデータを更新する
   void setLifeBalanceWheel(LifeBalanceWheel updateData) {
     _lifeBalanceWheel = updateData.copy();
-    notifyListeners();
-  }
-
-  /// 理想の状態を取得する
-  @deprecated
-  String getIdealState() {
-    return _weekGoal.getIdealStateText();
-  }
-
-  /// 理想の状態を更新する
-  @deprecated
-  void setIdealState(String idealState) {
-    _weekGoal.setIdealState(idealState);
-    notifyListeners();
-  }
-
-  /// やることリストを取得する
-  @deprecated
-  String getTodoListText() {
-    return _weekGoal.getTodoListText();
-  }
-
-  /// やることリストを更新する
-  @deprecated
-  void setTodoListText(String thingsTodo) {
-    _weekGoal.setTodoListText(thingsTodo);
-    notifyListeners();
-  }
-
-  /// 振り返りの内容を取得する
-  @deprecated
-  String getWeekReviewText() {
-    return _weekReview.reviewText ?? '';
-  }
-
-  /// 振り返りの内容を更新する
-  @deprecated
-  void setReviewText(String text) {
-    _weekReview.setReviewText(text);
     notifyListeners();
   }
 }
