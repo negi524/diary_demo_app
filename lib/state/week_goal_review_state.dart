@@ -1,3 +1,5 @@
+import 'package:diary_demo_app/domain/week_goal.dart';
+import 'package:diary_demo_app/domain/week_review.dart';
 import 'package:diary_demo_app/domain/weekly_goal_review.dart';
 import 'package:diary_demo_app/locator.dart';
 import 'package:diary_demo_app/service/weekly_goal_review_factory.dart';
@@ -21,17 +23,29 @@ class WeekGoalReviewState extends ChangeNotifier {
     _weeklyGoalReview = _weeklyGoalReviewFactory.createMock()[1];
   }
 
+  /// 週の目標データを取得する
+  WeekGoal getWeekGoal() {
+    return _weeklyGoalReview.getWeekGoal();
+  }
+
+  /// 週の振り返りデータを取得する
+  WeekReview getWeekReview() {
+    return _weeklyGoalReview.getWeekReview();
+  }
+
   /// 週の開始と終了日を文字列で取得する
   String getWeekTermText() {
     return _weeklyGoalReview.getWeekTermString();
   }
 
   /// 理想の状態を取得する
+  @deprecated
   String getIdealState() {
     return _weeklyGoalReview.getWeekGoal().getIdealStateText();
   }
 
   /// やることリストを取得する
+  @deprecated
   String getTodoListText() {
     return _weeklyGoalReview.getWeekGoal().getTodoListText();
   }

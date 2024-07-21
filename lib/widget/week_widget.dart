@@ -1,6 +1,6 @@
 import 'package:diary_demo_app/page/review_edit_page.dart';
-import 'package:diary_demo_app/page/week_goal_edit_page.dart';
 import 'package:diary_demo_app/state/week_goal_review_state.dart';
+import 'package:diary_demo_app/widget/week_goal_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,24 +20,7 @@ class WeekWidget extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineLarge),
           ),
           SizedBox(height: 30),
-          Row(
-            children: [
-              Text('目標', style: Theme.of(context).textTheme.headlineLarge),
-              SizedBox(width: 30),
-              ElevatedButton(
-                  onPressed: () {
-                    // ボタンが押されたときの処理
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => WeekGoalEditPage()));
-                  },
-                  child: Text('目標編集')),
-            ],
-          ),
-          SizedBox(height: 30),
-          Text(weekState.getIdealState()),
-          Text(weekState.getTodoListText()),
+          WeekGoalWidget(weekGoal: weekState.getWeekGoal()),
           SizedBox(height: 60),
           Row(children: [
             Text('振り返り', style: Theme.of(context).textTheme.headlineLarge),
