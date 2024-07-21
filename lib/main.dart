@@ -2,6 +2,7 @@ import 'package:diary_demo_app/domain/life_balance_wheel.dart';
 import 'package:diary_demo_app/domain/week_goal.dart';
 import 'package:diary_demo_app/domain/week_review.dart';
 import 'package:diary_demo_app/locator.dart';
+import 'package:diary_demo_app/state/week_goal_review_state.dart';
 import 'package:diary_demo_app/widget/week_widget.dart';
 import 'package:diary_demo_app/widget/life_balance_wheel_widget.dart';
 import 'package:diary_demo_app/widget/profile_widget.dart';
@@ -10,7 +11,13 @@ import 'package:provider/provider.dart';
 
 void main() {
   setUpLocator();
-  runApp(MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => MyAppState()),
+      ChangeNotifierProvider(create: (_) => WeekGoalReviewState())
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -18,16 +25,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
-      child: MaterialApp(
-        title: 'Diary App',
-        theme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
-        ),
-        home: HomePage(),
+    return MaterialApp(
+      title: 'Diary App',
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
       ),
+      home: HomePage(),
     );
   }
 }
