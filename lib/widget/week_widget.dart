@@ -16,19 +16,21 @@ class WeekWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                  onPressed: () {
-                    // TODO: 実装
-                  },
+                  color: Colors.blue,
+                  disabledColor: Colors.grey,
+                  onPressed: !weekState.hasPreviousWeek()
+                      ? null
+                      : () => weekState.updatePreviousWeek(),
                   icon: Icon(Icons.navigate_before)),
               Text(weekState.getWeekTermText(),
                   style: Theme.of(context).textTheme.headlineLarge),
               IconButton(
-                  onPressed: () {
-                    // TODO: 実装
-                  },
+                  onPressed: !weekState.hasNextWeek()
+                      ? null
+                      : () => weekState.updateNextWeek(),
                   icon: Icon(Icons.navigate_next)),
             ],
           ),

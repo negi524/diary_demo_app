@@ -76,23 +76,27 @@ class WeekGoalReviewState extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool hasNextWeek() {
-    return true;
-  }
-
-  void setNextWeek() {
-    // TODO: データフェッチを行い、次週のデータで更新する
-    _weeklyGoalReview = _weeklyGoalReviewFactory.createMock()[2];
-    notifyListeners();
-  }
-
+  /// 前の週がある場合はtrueを返す
   bool hasPreviousWeek() {
     return true;
   }
 
-  void setPreviousWeek() {
+  /// 先週のデータで更新する
+  void updatePreviousWeek() {
     // TODO: データフェッチを行い、先週のデータで更新する
     _weeklyGoalReview = _weeklyGoalReviewFactory.createMock()[0];
+    notifyListeners();
+  }
+
+  /// 次の週がある場合はtrueを返す
+  bool hasNextWeek() {
+    return true;
+  }
+
+  /// 次週のデータで更新する
+  void updateNextWeek() {
+    // TODO: データフェッチを行い、次週のデータで更新する
+    _weeklyGoalReview = _weeklyGoalReviewFactory.createMock()[2];
     notifyListeners();
   }
 }
