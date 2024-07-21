@@ -21,6 +21,11 @@ class WeekGoalReviewState extends ChangeNotifier {
     _weeklyGoalReview = _weeklyGoalReviewFactory.createMock()[1];
   }
 
+  /// 週の開始と終了日を文字列で取得する
+  String getWeekTermText() {
+    return _weeklyGoalReview.getWeekTermString();
+  }
+
   /// 理想の状態を取得する
   String getIdealState() {
     return _weeklyGoalReview.getWeekGoal().getIdealStateText();
