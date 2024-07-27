@@ -1,5 +1,6 @@
 import 'package:diary_demo_app/locator.dart';
 import 'package:diary_demo_app/state/life_balance_wheel_state.dart';
+import 'package:diary_demo_app/state/user_state.dart';
 import 'package:diary_demo_app/state/week_goal_review_state.dart';
 import 'package:diary_demo_app/widget/week_widget.dart';
 import 'package:diary_demo_app/widget/life_balance_wheel_widget.dart';
@@ -18,6 +19,7 @@ void main() async {
     providers: [
       ChangeNotifierProvider(create: (_) => WeekGoalReviewState()),
       ChangeNotifierProvider(create: (_) => LifeBalanceWheelState()),
+      ChangeNotifierProvider(create: (_) => UserState()),
     ],
     child: MyApp(),
   ));
