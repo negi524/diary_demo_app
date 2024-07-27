@@ -34,10 +34,12 @@ class UserState extends ChangeNotifier {
   /// ログイン処理
   void login() {
     _userProperty = UserProperty.createAuthenticatedUser();
+    notifyListeners();
   }
 
   /// ログアウト処理
   void logout() {
     _userProperty = UserProperty.createAnonymousUser();
+    notifyListeners();
   }
 }
