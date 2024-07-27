@@ -1,4 +1,3 @@
-import 'package:diary_demo_app/domain/life_balance_wheel.dart';
 import 'package:diary_demo_app/locator.dart';
 import 'package:diary_demo_app/state/life_balance_wheel_state.dart';
 import 'package:diary_demo_app/state/week_goal_review_state.dart';
@@ -17,7 +16,6 @@ void main() {
   setUpLocator();
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (_) => MyAppState()),
       ChangeNotifierProvider(create: (_) => WeekGoalReviewState()),
       ChangeNotifierProvider(create: (_) => LifeBalanceWheelState()),
     ],
@@ -38,22 +36,6 @@ class MyApp extends StatelessWidget {
       ),
       home: HomePage(),
     );
-  }
-}
-
-class MyAppState extends ChangeNotifier {
-  /// ライフバランスホイール
-  LifeBalanceWheel _lifeBalanceWheel = LifeBalanceWheel();
-
-  /// ライフバランスホイールのデータを取得する
-  LifeBalanceWheel getLifeBalanceWheel() {
-    return _lifeBalanceWheel;
-  }
-
-  /// ライフバランスホイールのデータを更新する
-  void setLifeBalanceWheel(LifeBalanceWheel updateData) {
-    _lifeBalanceWheel = updateData.copy();
-    notifyListeners();
   }
 }
 
