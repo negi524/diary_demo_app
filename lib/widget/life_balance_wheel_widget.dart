@@ -1,23 +1,16 @@
 import 'package:diary_demo_app/domain/life_balance_wheel.dart';
-import 'package:diary_demo_app/main.dart';
+import 'package:diary_demo_app/state/life_balance_wheel_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_radar_chart/flutter_radar_chart.dart';
 import 'package:provider/provider.dart';
 
 /// ライフバランスホイールのページ
-class LifeBalanceWheelWidget extends StatefulWidget {
-  @override
-  State<LifeBalanceWheelWidget> createState() => _LifeBalanceWheelWidgetState();
-}
-
-class _LifeBalanceWheelWidgetState extends State<LifeBalanceWheelWidget> {
-  var _inputLifeBalanceWheel = LifeBalanceWheel();
-
+class LifeBalanceWheelWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
-    var masterLifeBalanceWheel = appState.getLifeBalanceWheel();
-    _inputLifeBalanceWheel = masterLifeBalanceWheel.copy();
+    var lifeBalanceWheelState = context.watch<LifeBalanceWheelState>();
+    var inputLifeBalanceWheel =
+        lifeBalanceWheelState.getLifeBalanceWheel().copy();
 
     return Form(
       child: SingleChildScrollView(
@@ -28,13 +21,14 @@ class _LifeBalanceWheelWidgetState extends State<LifeBalanceWheelWidget> {
                 style: Theme.of(context).textTheme.headlineLarge),
           ),
           SizedBox(height: 20),
-          buildRadarChart(_inputLifeBalanceWheel),
+          buildRadarChart(inputLifeBalanceWheel),
           SizedBox(height: 20),
-          buildTable(_inputLifeBalanceWheel),
+          buildTable(inputLifeBalanceWheel),
           SizedBox(height: 20),
           ElevatedButton(
               onPressed: () {
-                appState.setLifeBalanceWheel(_inputLifeBalanceWheel);
+                lifeBalanceWheelState
+                    .setLifeBalanceWheel(inputLifeBalanceWheel);
                 // 保存したことを通知
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text('保存しました'),
