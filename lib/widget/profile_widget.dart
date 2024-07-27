@@ -15,9 +15,22 @@ class ProfileWidget extends StatelessWidget {
         print('fuga');
       }
     });
-    userState.login();
     return Column(
       children: [
+        Row(
+          children: [
+            ElevatedButton(
+                onPressed: () {
+                  userState.login();
+                },
+                child: Text('login')),
+            ElevatedButton(
+                onPressed: () {
+                  userState.logout();
+                },
+                child: Text('logout')),
+          ],
+        ),
         Row(
           children: [
             Text('ユーザーID: '),

@@ -17,7 +17,10 @@ class UserProperty {
   }
 
   /// ログインユーザーを生成する
-  factory UserProperty.createAuthenticatedUser() {
-    return UserProperty._(id: 'AAA', name: 'テストユーザー', isLogin: true);
+  factory UserProperty.createAuthenticatedUser({
+    required String userId,
+    required String userName,
+  }) {
+    return UserProperty._(id: userId, name: userName, isLogin: true);
   }
 }

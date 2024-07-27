@@ -1,4 +1,5 @@
 import 'package:diary_demo_app/domain/user_property.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class UserState extends ChangeNotifier {
@@ -32,13 +33,30 @@ class UserState extends ChangeNotifier {
   }
 
   /// ログイン処理
-  void login() {
-    _userProperty = UserProperty.createAuthenticatedUser();
+  Future<void> login() async {
+    try {
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: 'dummy@example.com', password: 'dummypassword');
+      print(credential);
+      final userId = credential.user?.uid ?? '';
+      const userName = 'テストユーザー1';
+      _userProperty = UserProperty.createAuthenticatedUser(
+        userId: userId,
+        userName: userName,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
+    }
     notifyListeners();
   }
 
   /// ログアウト処理
-  void logout() {
+  Future<void> logout() async {
+    await FirebaseAuth.instance.signOut();
     _userProperty = UserProperty.createAnonymousUser();
     notifyListeners();
   }
