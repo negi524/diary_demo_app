@@ -41,6 +41,7 @@ dependencies:
   flutter_radar_chart: ^0.2.1
   get_it: ^7.7.0
   firebase_core: ^3.2.0
+  firebase_auth: ^5.1.2
 
 dev_dependencies:
   flutter_test:
