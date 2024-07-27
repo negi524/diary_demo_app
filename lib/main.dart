@@ -6,8 +6,13 @@ import 'package:diary_demo_app/widget/life_balance_wheel_widget.dart';
 import 'package:diary_demo_app/widget/profile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() {
+  Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   setUpLocator();
   runApp(MultiProvider(
     providers: [
