@@ -54,32 +54,36 @@ Widget buildSignOutForm(UserState userState) {
 
 /// サインイン用のフォームを表示する
 Widget buildSignInForm(UserState userState) {
-  // TODO: 変数で持つ
+  // 入力中のメールアドレス
+  String inputMailAddress = '';
+  // 入力中のパスワード
+  String inputPassword = '';
+
   return Column(
     children: [
       TextField(
         decoration: InputDecoration(
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(4.0))),
-            hintText: 'メールアドレス'),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(4.0))),
+          hintText: 'メールアドレス',
+          icon: Icon(Icons.mail),
+        ),
         keyboardType: TextInputType.emailAddress,
-        onChanged: (mail) {
-          // TODO: メールアドレス同期
-        },
+        onChanged: (mail) => inputMailAddress = mail,
       ),
       TextField(
         decoration: InputDecoration(
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(4.0))),
-            hintText: 'パスワード'),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(4.0))),
+          hintText: 'パスワード',
+          icon: Icon(Icons.key),
+        ),
         keyboardType: TextInputType.visiblePassword,
-        onChanged: (mail) {
-          // TODO: パスワード同期
-        },
+        onChanged: (password) => inputPassword = password,
       ),
       ElevatedButton(
           onPressed: () {
-            userState.signIn();
+            userState.signIn(inputMailAddress, inputPassword);
           },
           child: Text('sign in'))
     ],

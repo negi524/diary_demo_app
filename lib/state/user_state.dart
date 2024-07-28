@@ -34,10 +34,10 @@ class UserState extends ChangeNotifier {
   }
 
   /// ログイン処理
-  Future<void> signIn() async {
+  Future<void> signIn(String mail, String password) async {
     try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: 'dummy@example.com', password: 'dummypassword');
+      final credential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: mail, password: password);
       print(credential);
       final userId = credential.user?.uid ?? '';
       const userName = 'テストユーザー1';
