@@ -1,5 +1,6 @@
 import 'package:diary_demo_app/locator.dart';
 import 'package:diary_demo_app/state/life_balance_wheel_state.dart';
+import 'package:diary_demo_app/state/user_state.dart';
 import 'package:diary_demo_app/state/week_goal_review_state.dart';
 import 'package:diary_demo_app/widget/week_widget.dart';
 import 'package:diary_demo_app/widget/life_balance_wheel_widget.dart';
@@ -9,8 +10,8 @@ import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-void main() {
-  Firebase.initializeApp(
+void main() async {
+  await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   setUpLocator();
@@ -18,6 +19,7 @@ void main() {
     providers: [
       ChangeNotifierProvider(create: (_) => WeekGoalReviewState()),
       ChangeNotifierProvider(create: (_) => LifeBalanceWheelState()),
+      ChangeNotifierProvider(create: (_) => UserState()),
     ],
     child: MyApp(),
   ));
