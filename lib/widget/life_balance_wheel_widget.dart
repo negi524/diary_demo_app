@@ -11,47 +11,56 @@ class LifeBalanceWheelWidget extends StatelessWidget {
   final LifeBalanceWheelService _lifeBalanceWheelService =
       locator<LifeBalanceWheelService>();
 
+  Future<LifeBalanceWheel> _fetchData() async {
+    return _lifeBalanceWheelService.fetchLifeBalanceWheeel();
+  }
+
   @override
   Widget build(BuildContext context) {
     var lifeBalanceWheelState = context.watch<LifeBalanceWheelState>();
     var inputLifeBalanceWheel =
         lifeBalanceWheelState.getLifeBalanceWheel().copy();
 
-    return Form(
-      child: SingleChildScrollView(
-        child: Column(children: [
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Text('ライフバランスホイール',
-                style: Theme.of(context).textTheme.headlineLarge),
-          ),
-          ElevatedButton(
-              onPressed: () {
-                // TODO: 処理削除
-                _lifeBalanceWheelService.fetchLifeBalanceWheeel().then(
-                    (value) =>
-                        lifeBalanceWheelState.setLifeBalanceWheel(value));
-              },
-              child: Text('テスト用ボタン')),
-          SizedBox(height: 20),
-          buildRadarChart(inputLifeBalanceWheel),
-          SizedBox(height: 20),
-          buildTable(inputLifeBalanceWheel),
-          SizedBox(height: 20),
-          ElevatedButton(
-              onPressed: () {
-                lifeBalanceWheelState
-                    .setLifeBalanceWheel(inputLifeBalanceWheel);
-                // 保存したことを通知
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text('保存しました'),
-                  duration: Duration(seconds: 1),
-                ));
-              },
-              child: Text('保存'))
-        ]),
-      ),
-    );
+    return FutureBuilder(
+        future: _fetchData(),
+        builder:
+            (BuildContext context, AsyncSnapshot<LifeBalanceWheel> snapshot) {
+          return Form(
+            child: SingleChildScrollView(
+              child: Column(children: [
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Text('ライフバランスホイール',
+                      style: Theme.of(context).textTheme.headlineLarge),
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      // TODO: 処理削除
+                      _lifeBalanceWheelService.fetchLifeBalanceWheeel().then(
+                          (value) =>
+                              lifeBalanceWheelState.setLifeBalanceWheel(value));
+                    },
+                    child: Text('テスト用ボタン')),
+                SizedBox(height: 20),
+                buildRadarChart(inputLifeBalanceWheel),
+                SizedBox(height: 20),
+                buildTable(inputLifeBalanceWheel),
+                SizedBox(height: 20),
+                ElevatedButton(
+                    onPressed: () {
+                      lifeBalanceWheelState
+                          .setLifeBalanceWheel(inputLifeBalanceWheel);
+                      // 保存したことを通知
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('保存しました'),
+                        duration: Duration(seconds: 1),
+                      ));
+                    },
+                    child: Text('保存'))
+              ]),
+            ),
+          );
+        });
   }
 }
 
