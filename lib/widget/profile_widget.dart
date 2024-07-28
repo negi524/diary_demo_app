@@ -21,14 +21,14 @@ class ProfileWidget extends StatelessWidget {
           children: [
             ElevatedButton(
                 onPressed: () {
-                  userState.login();
+                  userState.signIn();
                 },
-                child: Text('login')),
+                child: Text('sign in')),
             ElevatedButton(
                 onPressed: () {
-                  userState.logout();
+                  userState.signOut();
                 },
-                child: Text('logout')),
+                child: Text('sign out')),
           ],
         ),
         Row(

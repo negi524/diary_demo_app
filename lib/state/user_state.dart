@@ -2,6 +2,7 @@ import 'package:diary_demo_app/domain/user_property.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+/// ユーザー情報のstate
 class UserState extends ChangeNotifier {
   /// ユーザー
   late UserProperty _userProperty;
@@ -33,7 +34,7 @@ class UserState extends ChangeNotifier {
   }
 
   /// ログイン処理
-  Future<void> login() async {
+  Future<void> signIn() async {
     try {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: 'dummy@example.com', password: 'dummypassword');
@@ -55,7 +56,7 @@ class UserState extends ChangeNotifier {
   }
 
   /// ログアウト処理
-  Future<void> logout() async {
+  Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
     _userProperty = UserProperty.createAnonymousUser();
     notifyListeners();
