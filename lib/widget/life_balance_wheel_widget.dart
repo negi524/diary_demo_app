@@ -25,6 +25,13 @@ class LifeBalanceWheelWidget extends StatelessWidget {
         future: _fetchData(),
         builder:
             (BuildContext context, AsyncSnapshot<LifeBalanceWheel> snapshot) {
+          // エラーハンドリング
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          } else if (snapshot.hasError) {
+            return Text('エラーが発生しました');
+          }
+
           return Form(
             child: SingleChildScrollView(
               child: Column(children: [
