@@ -1,3 +1,4 @@
+import 'package:diary_demo_app/infrastructure/firebase_config.dart';
 import 'package:diary_demo_app/infrastructure/firebase_repository.dart';
 import 'package:diary_demo_app/service/weekly_goal_review_factory.dart';
 import 'package:get_it/get_it.dart';
@@ -6,7 +7,8 @@ import 'package:get_it/get_it.dart';
 
 GetIt locator = GetIt.instance;
 
-void setUpLocator() {
+Future<void> setUpLocator() async {
   locator.registerSingleton(WeeklyGoalReviewFactory());
   locator.registerSingleton(FirebaseRepository());
+  locator.registerSingleton(FirebaseConfig.fireStore());
 }

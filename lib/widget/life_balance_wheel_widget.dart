@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diary_demo_app/domain/life_balance_wheel.dart';
+import 'package:diary_demo_app/locator.dart';
 import 'package:diary_demo_app/state/life_balance_wheel_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_radar_chart/flutter_radar_chart.dart';
@@ -6,6 +8,8 @@ import 'package:provider/provider.dart';
 
 /// ライフバランスホイールのページ
 class LifeBalanceWheelWidget extends StatelessWidget {
+  final FirebaseFirestore _db = locator<FirebaseFirestore>();
+
   @override
   Widget build(BuildContext context) {
     var lifeBalanceWheelState = context.watch<LifeBalanceWheelState>();
@@ -20,6 +24,15 @@ class LifeBalanceWheelWidget extends StatelessWidget {
             child: Text('ライフバランスホイール',
                 style: Theme.of(context).textTheme.headlineLarge),
           ),
+          ElevatedButton(
+              onPressed: () {
+                _db.collection('users').get().then((event) {
+                  for (var doc in event.docs) {
+                    print("${doc.id} => ${doc.data()}");
+                  }
+                });
+              },
+              child: Text('テスト用ボタン')),
           SizedBox(height: 20),
           buildRadarChart(inputLifeBalanceWheel),
           SizedBox(height: 20),
