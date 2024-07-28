@@ -2,6 +2,7 @@ import 'package:diary_demo_app/domain/user_property.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+/// ユーザー情報のstate
 class UserState extends ChangeNotifier {
   /// ユーザー
   late UserProperty _userProperty;
@@ -33,12 +34,13 @@ class UserState extends ChangeNotifier {
   }
 
   /// ログイン処理
-  Future<void> login() async {
+  Future<void> signIn(String mail, String password) async {
+    print('mail=$mail, password=$password');
     try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: 'dummy@example.com', password: 'dummypassword');
-      print(credential);
+      final credential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: mail, password: password);
       final userId = credential.user?.uid ?? '';
+      //　TODO: 名前を正式な場所から取得
       const userName = 'テストユーザー1';
       _userProperty = UserProperty.createAuthenticatedUser(
         userId: userId,
@@ -49,15 +51,34 @@ class UserState extends ChangeNotifier {
         print('No user found for that email.');
       } else if (e.code == 'wrong-password') {
         print('Wrong password provided for that user.');
+      } else {
+        print('サインイン時に原因不明のエラーが発生しました $e');
       }
     }
     notifyListeners();
   }
 
   /// ログアウト処理
-  Future<void> logout() async {
+  Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
     _userProperty = UserProperty.createAnonymousUser();
     notifyListeners();
+  }
+
+  /// ログイン状態をチェックし、更新するリスナーを配置する
+  /// TODO: 1回実行するように改善する
+  Future<void> checkSignInStatus() async {
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        _userProperty = UserProperty.createAnonymousUser();
+        notifyListeners();
+      } else {
+        // TODO: 名前を正式な場所から取得
+        var userId = user.uid;
+        _userProperty = UserProperty.createAuthenticatedUser(
+            userId: userId, userName: 'テストユーザーhogehoge');
+        notifyListeners();
+      }
+    });
   }
 }
