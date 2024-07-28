@@ -26,6 +26,7 @@ class LifeBalanceWheelWidget extends StatelessWidget {
           ),
           ElevatedButton(
               onPressed: () {
+                // TODO: 処理削除
                 _db.collection('users').get().then((event) {
                   for (var doc in event.docs) {
                     print("${doc.id} => ${doc.data()}");
