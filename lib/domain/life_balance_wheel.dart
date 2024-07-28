@@ -51,6 +51,7 @@ class LifeBalanceWheel {
     );
   }
 
+  /// DTOクラスからライフバランスホイールのデータを生成する
   factory LifeBalanceWheel.fromLifeBalanceWheelDto(LifeBalanceWheelDto dto) {
     // TODO: nullセーフにする
     return LifeBalanceWheel._(
