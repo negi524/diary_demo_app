@@ -66,7 +66,7 @@ class UserState extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// ログイン状態をチェックし、更新する
+  /// ログイン状態をチェックし、更新するリスナーを配置する
   /// TODO: 1回実行するように改善する
   Future<void> checkSignInStatus() async {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
