@@ -1,5 +1,5 @@
 import 'package:diary_demo_app/state/user_state.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:diary_demo_app/widget/sign_in_form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,17 +8,12 @@ class ProfileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var userState = context.watch<UserState>();
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user == null) {
-        print('hoge');
-      } else {
-        print('fuga');
-      }
-    });
+    userState.checkSignInStatus();
+
     if (userState.isLogin()) {
       return buildSignOutForm(userState);
     } else {
-      return buildSignInForm(userState);
+      return SignInFormWidget();
     }
   }
 }
@@ -48,44 +43,6 @@ Widget buildSignOutForm(UserState userState) {
           Text(userState.getUserName()),
         ],
       ),
-    ],
-  );
-}
-
-/// サインイン用のフォームを表示する
-Widget buildSignInForm(UserState userState) {
-  // 入力中のメールアドレス
-  String inputMailAddress = '';
-  // 入力中のパスワード
-  String inputPassword = '';
-
-  return Column(
-    children: [
-      TextField(
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(4.0))),
-          hintText: 'メールアドレス',
-          icon: Icon(Icons.mail),
-        ),
-        keyboardType: TextInputType.emailAddress,
-        onChanged: (mail) => inputMailAddress = mail,
-      ),
-      TextField(
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(4.0))),
-          hintText: 'パスワード',
-          icon: Icon(Icons.key),
-        ),
-        keyboardType: TextInputType.visiblePassword,
-        onChanged: (password) => inputPassword = password,
-      ),
-      ElevatedButton(
-          onPressed: () {
-            userState.signIn(inputMailAddress, inputPassword);
-          },
-          child: Text('sign in'))
     ],
   );
 }
