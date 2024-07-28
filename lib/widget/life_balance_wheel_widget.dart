@@ -1,6 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diary_demo_app/domain/life_balance_wheel.dart';
-import 'package:diary_demo_app/infrastructure/firebase_repository.dart';
 import 'package:diary_demo_app/locator.dart';
 import 'package:diary_demo_app/service/life_balance_wheel_service.dart';
 import 'package:diary_demo_app/state/life_balance_wheel_state.dart';
