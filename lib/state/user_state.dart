@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:diary_demo_app/domain/user_property.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +40,7 @@ class UserState extends ChangeNotifier {
       final credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: mail, password: password);
       final userId = credential.user?.uid ?? '';
+      //　TODO: 名前を正式な場所から取得
       const userName = 'テストユーザー1';
       _userProperty = UserProperty.createAuthenticatedUser(
         userId: userId,
@@ -74,6 +73,7 @@ class UserState extends ChangeNotifier {
         _userProperty = UserProperty.createAnonymousUser();
         notifyListeners();
       } else {
+        // TODO: 名前を正式な場所から取得
         var userId = user.uid;
         _userProperty = UserProperty.createAuthenticatedUser(
             userId: userId, userName: 'テストユーザーhogehoge');
