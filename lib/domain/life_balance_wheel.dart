@@ -1,3 +1,5 @@
+import 'package:diary_demo_app/infrastructure/dto/life_balance_wheel_dto.dart';
+
 /// ライフバランスホイール
 class LifeBalanceWheel {
   /// 仕事の充実度
@@ -24,27 +26,64 @@ class LifeBalanceWheel {
   /// 住環境
   final LifeBalanceAsset livingEnvironment;
 
-  LifeBalanceWheel()
-      : workSatisfaction = LifeBalanceAsset(name: '仕事の充実度', score: 5),
-        relationships = LifeBalanceAsset(name: '人間関係(仕事、友人)', score: 5),
-        family = LifeBalanceAsset(name: '家族', score: 5),
-        lovePartnership = LifeBalanceAsset(name: '恋愛・パートナーシップ', score: 5),
-        fitnessHealth = LifeBalanceAsset(name: '運動・フィットネス・健康', score: 5),
-        hobbiesEntertainment = LifeBalanceAsset(name: '趣味・娯楽', score: 5),
-        money = LifeBalanceAsset(name: 'お金・経済状況', score: 5),
-        livingEnvironment = LifeBalanceAsset(name: '住環境', score: 5);
+  LifeBalanceWheel._({
+    required this.workSatisfaction,
+    required this.relationships,
+    required this.family,
+    required this.lovePartnership,
+    required this.fitnessHealth,
+    required this.hobbiesEntertainment,
+    required this.money,
+    required this.livingEnvironment,
+  });
+
+  /// モックを生成する
+  factory LifeBalanceWheel.createMock() {
+    return LifeBalanceWheel._(
+      workSatisfaction: LifeBalanceAsset(name: '仕事の充実度', score: 5),
+      relationships: LifeBalanceAsset(name: '人間関係(仕事、友人)', score: 5),
+      family: LifeBalanceAsset(name: '家族', score: 5),
+      lovePartnership: LifeBalanceAsset(name: '恋愛・パートナーシップ', score: 5),
+      fitnessHealth: LifeBalanceAsset(name: '運動・フィットネス・健康', score: 5),
+      hobbiesEntertainment: LifeBalanceAsset(name: '趣味・娯楽', score: 5),
+      money: LifeBalanceAsset(name: 'お金・経済状況', score: 5),
+      livingEnvironment: LifeBalanceAsset(name: '住環境', score: 5),
+    );
+  }
+
+  factory LifeBalanceWheel.fromLifeBalanceWheelDto(LifeBalanceWheelDto dto) {
+    // TODO: nullセーフにする
+    return LifeBalanceWheel._(
+      workSatisfaction:
+          LifeBalanceAsset(name: '仕事の充実度', score: dto.workSatisfaction ?? 5),
+      relationships: LifeBalanceAsset(name: '人間関係(仕事、友人)', score: 5),
+      family: LifeBalanceAsset(name: '家族', score: 5),
+      lovePartnership: LifeBalanceAsset(name: '恋愛・パートナーシップ', score: 5),
+      fitnessHealth: LifeBalanceAsset(name: '運動・フィットネス・健康', score: 5),
+      hobbiesEntertainment: LifeBalanceAsset(name: '趣味・娯楽', score: 5),
+      money: LifeBalanceAsset(name: 'お金・経済状況', score: 5),
+      livingEnvironment: LifeBalanceAsset(name: '住環境', score: 5),
+    );
+  }
 
   /// データをコピーして新しいオブジェクトを生成する
   LifeBalanceWheel copy() {
-    return LifeBalanceWheel()
-      ..workSatisfaction.setScore(workSatisfaction.getScore())
-      ..relationships.setScore(relationships.getScore())
-      ..family.setScore(family.getScore())
-      ..lovePartnership.setScore(lovePartnership.getScore())
-      ..fitnessHealth.setScore(fitnessHealth.getScore())
-      ..hobbiesEntertainment.setScore(hobbiesEntertainment.getScore())
-      ..money.setScore(money.getScore())
-      ..livingEnvironment.setScore(livingEnvironment.getScore());
+    return LifeBalanceWheel._(
+      workSatisfaction:
+          LifeBalanceAsset(name: '仕事の充実度', score: workSatisfaction.getScore()),
+      relationships: LifeBalanceAsset(
+          name: '人間関係(仕事、友人)', score: relationships.getScore()),
+      family: LifeBalanceAsset(name: '家族', score: family.getScore()),
+      lovePartnership: LifeBalanceAsset(
+          name: '恋愛・パートナーシップ', score: lovePartnership.getScore()),
+      fitnessHealth: LifeBalanceAsset(
+          name: '運動・フィットネス・健康', score: fitnessHealth.getScore()),
+      hobbiesEntertainment: LifeBalanceAsset(
+          name: '趣味・娯楽', score: hobbiesEntertainment.getScore()),
+      money: LifeBalanceAsset(name: 'お金・経済状況', score: money.getScore()),
+      livingEnvironment:
+          LifeBalanceAsset(name: '住環境', score: livingEnvironment.getScore()),
+    );
   }
 }
 

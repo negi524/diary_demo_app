@@ -8,7 +8,7 @@ import 'package:get_it/get_it.dart';
 GetIt locator = GetIt.instance;
 
 Future<void> setUpLocator() async {
+  locator.registerSingleton(FirebaseConfig.fireStore());
   locator.registerSingleton(WeeklyGoalReviewFactory());
   locator.registerSingleton(FirebaseRepository());
-  locator.registerSingleton(FirebaseConfig.fireStore());
 }

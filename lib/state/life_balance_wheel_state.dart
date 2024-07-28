@@ -13,7 +13,7 @@ class LifeBalanceWheelState extends ChangeNotifier {
   /// 初期化処理
   void _init() {
     // TODO: データフェッチを行う
-    _lifeBalanceWheel = LifeBalanceWheel();
+    _lifeBalanceWheel = LifeBalanceWheel.createMock();
   }
 
   /// ライフバランスホイールのデータを取得する
